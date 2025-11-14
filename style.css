@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary-color: #667eea;     /* Strong Blue */
+    --secondary-color: #764ba2;   /* Purple */
+    --accent-color: #ff6b9d;      /* Pink */
+    --success-color: #4ade80;     /* Green for success */
+    --danger-color: #f87171;      /* Red for errors */
+    --light-bg: #f8f9fa;          /* Light background */
+    --dark-bg: #343a40;           /* Dark background */
+    --text-light: #fff;           /* White text */
+    --text-dark: #333;            /* Dark text */
+    --shadow-color: rgba(102, 126, 234, 0.25);
+    --btn-gradient: linear-gradient(135deg, #667eea, #764ba2);
+    --btn-hover-gradient: linear-gradient(135deg, #5a67d8, #6b46c1);
+    --input-bg-light: #fff;
+    --input-bg-dark: #2e3340;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #495057 100%);
+    color: var(--text-light);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    /* Replace white with pastel gradient */
+    background: linear-gradient(135deg, #f0f4ff 0%, #fdf6fd 100%);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+    padding: 40px;
+    margin-top: 50px;
+    animation: fadeIn 0.5s ease-in;
+    color: var(--text-dark);
+}
+
+body.dark-mode .container {
+    background: linear-gradient(135deg, #2c344e 0%, #1d2137 100%);
+    color: var(--text-light);
+    box-shadow: 0 15px 40px rgba(103, 80, 164, 0.6);
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn-modern {
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: var(--btn-gradient);
+    color: white;
+    border: none;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    user-select: none;
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.btn-modern:hover::before {
+    left: 100%;
+}
+
+.btn-modern:hover {
+    background: var(--btn-hover-gradient);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.8);
+    transform: translateY(-4px);
+}
+
+/* Cards */
+.card {
+    background: linear-gradient(135deg, #f0f4ff 0%, #d9e4ff 100%);
+    border-radius: 1.2rem;
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+}
+
+body.dark-mode .card {
+    background: linear-gradient(135deg, #2f3548 0%, #1c2230 100%);
+    color: var(--text-light);
+    box-shadow: 0 15px 55px rgba(102, 126, 234, 0.5);
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 20px 55px rgba(102, 126, 234, 0.5);
+}
+
+/* Inputs */
+.form-control {
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    padding: 16px 20px;
+    font-size: 1.05rem;
+    background: var(--input-bg-light);
+    color: var(--text-dark);
+    box-shadow: inset 1px 1px 6px #cbd6e9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: #a3b1d1;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(255, 107, 157, 0.6);
+}
+
+body.dark-mode .form-control {
+    background: var(--input-bg-dark);
+    border-color: #666d82;
+    color: var(--text-light);
+    box-shadow: inset 1px 1px 8px #61677f;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #a0aec0;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.dark-mode label {
+    color: var(--text-light);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 12px;
+    font-weight: 600;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+body.dark-mode .navbar {
+    background: rgba(40, 44, 60, 0.98) !important;
+    box-shadow: 0 6px 25px rgba(94, 84, 189, 0.8);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 3px 0 15px rgba(102, 126, 234, 0.35);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+body.dark-mode .sidebar {
+    background: rgba(42, 47, 65, 0.96);
+    box-shadow: 3px 0 20px rgba(102, 126, 234, 0.6);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar .list-group-item {
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+body.dark-mode .sidebar .list-group-item {
+    color: var(--text-light);
+}
+
+.sidebar .list-group-item:hover,
+.sidebar .list-group-item.active {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(182, 133, 252, 0.75);
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    user-select: none;
+    z-index: 1100;
+}
+
+.fab:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 15px 35px rgba(118, 75, 162, 0.8);
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 25px;
+        margin-top: 20px;
+        max-width: 95%;
+    }
+    .sidebar {
+        width: 220px;
+    }
+}
+
+/* Developer icon on login page */
+.dev-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.7rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.dev-icon:hover {
+    color: var(--accent-color);
+}
+
+/* Validity Result Styles */
+.validity-result {
+    font-weight: 600;
+    min-height: 1.3rem;
+}
+
+.validity-result.success {
+    color: var(--success-color);
+}
+
+.validity-result.error {
+    color: var(--danger-color);
+}
+
+/* Dark mode input background and text color */
+body.dark-mode .form-control {
+    background-color: #2a303c !important;
+    color: #e0e6f2 !important;  /* light text */
+    border-color: #555d6e !important;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #a3a9b8 !important;  /* visible lighter placeholder */
+}
+
+/* Make dark mode labels visible */
+body.dark-mode label {
+    color: #cbd5e1 !important;
+}
+
+/* For inputs and textarea: full color override */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    color: #e0e6f2 !important;
+}
+
+/* Dark mode input background and visible text */
+body.dark-mode .form-control {
+    background-color: #1e2636 !important;  /* Dark, but not too dark */
+    color: #e0e6f2 !important;             /* Bright text color */
+    border-color: #596875 !important;      /* Subtle lighter border */
+    box-shadow: inset 1px 1px 6px #162030 !important; /* Slight inner shadow */
+}
+
+/* Placeholder color in dark mode */
+body.dark-mode .form-control::placeholder {
+    color: #9aa9c0 !important;
+}
+
+/* Label color in dark mode */
+body.dark-mode label {
+    color: #aec2e0 !important;
+}
+
+
+/* Optional: prevent autofill background override in dark mode */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    transition-delay: 9999s;  /* keep dark bg */
+}
+/* Also override autofill background color to dark */
+input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #2a303c inset !important;
+    -webkit-text-fill-color: #e0e6f2 !important;
+}
+
+/* Colorful gradient buttons */
+.btn-modern {
+    background: linear-gradient(135deg, #667eea, #764ba2, #ff6b9d);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 6px 25px rgba(255, 107, 157, 0.6);
+    transition: background 0.4s ease, transform 0.2s ease;
+}
+
+.btn-modern:hover {
+    background: linear-gradient(135deg, #764ba2, #ff6b9d, #667eea);
+    box-shadow: 0 10px 35px rgba(255, 107, 157, 0.85);
+    transform: scale(1.05);
+}
+
+/* Cards with tinted pastel backgrounds */
+.card {
+    background: linear-gradient(135deg, #e3f2fd, #fff0f6);
+    color: #272741;
+    border-radius: 1.2rem;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.25);
+}
+
+body.dark-mode .card {
+    background: linear-gradient(135deg, #423759, #2c1b3f);
+    color: #f5d1e1;
+    box-shadow: 0 15px 50px rgba(255, 107, 157, 0.65);
+}
+
+/* Sidebar with purple accent on active and hover */
+.sidebar .list-group-item:hover,
+.sidebar .list-group-item.active {
+    background: #764ba2;
+    color: white;
+    font-weight: 700;
+}
+
+/* Floating Action Button with gradient */
+.fab {
+    background: linear-gradient(135deg, #764ba2, #ff6b9d);
+    box-shadow: 0 12px 40px rgba(255, 107, 157, 0.9);
+}
+
+.fab:hover {
+    background: linear-gradient(135deg, #ff6b9d, #764ba2);
+    box-shadow: 0 15px 50px rgba(255, 107, 157, 1);
+}
