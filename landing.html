@@ -1,0 +1,107 @@
+// {% extends 'base.html' %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<style>
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+.tab-button {
+  padding: 12px 30px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 25px;
+  background: #e3f2fd;
+  color: #2575fc;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+.tab-button.active, .tab-button:hover {
+  background: #2575fc;
+  color: white;
+  box-shadow: 0 6px 18px rgba(37, 117, 252, 0.4);
+}
+.tab-content {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(37, 117, 252, 0.15);
+}
+body.dark-mode .tab-content {
+  background: #2a2f3a;
+  color: #f1f1f1;
+}
+.tab-panel {
+  display: none;
+}
+.tab-panel.active {
+  display: block;
+}
+</style>
+
+<div class="tabs">
+  <div class="tab-button active" data-tab="login">🔑 Login</div>
+  <div class="tab-button" data-tab="register">📝 Register</div>
+  <div class="tab-button" data-tab="developer">⚙️ Developer</div>
+</div>
+
+<div class="tab-content">
+  <div id="login" class="tab-panel active">
+    <form method="POST" action="{{ url_for('login_route') }}">
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required class="form-control" placeholder="Enter username">
+      </div>
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required class="form-control" placeholder="Enter password">
+      </div>
+      <button type="submit" class="btn btn-modern w-100">Login</button>
+    </form>
+  </div>
+  <div id="register" class="tab-panel">
+    <form method="POST" action="{{ url_for('register_route') }}">
+      <div class="mb-3">
+        <label for="reg_username">Choose Username</label>
+        <input type="text" name="username" id="reg_username" required class="form-control" placeholder="Choose username">
+      </div>
+      <div class="mb-3">
+        <label for="reg_password">Choose Password</label>
+        <input type="password" name="password" id="reg_password" required class="form-control" placeholder="Choose password">
+      </div>
+      <button type="submit" class="btn btn-modern w-100">Register</button>
+    </form>
+  </div>
+  <div id="developer" class="tab-panel">
+    <form method="POST" action="{{ url_for('landing') }}">
+      <div class="mb-3">
+        <label for="dev_key">Developer Key</label>
+        <input type="password" name="dev_key" id="dev_key" required class="form-control" placeholder="Enter developer key">
+      </div>
+      {% if dev_error %}
+      <div class="alert alert-danger">{{ dev_error }}</div>
+      {% endif %}
+      <button type="submit" class="btn btn-modern w-100">Access Developer Dashboard</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-button');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      panels.forEach(panel => {
+          panel.classList.toggle('active', panel.id === target);
+      });
+    });
+  });
+</script>
+{% endblock %}
