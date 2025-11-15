@@ -59,25 +59,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const cardExpiry = button.getAttribute('data-expiry');
             const resultDiv = button.closest('.card-body').querySelector('.validity-result');
 
-            if (!cardExpiry || cardExpiry.length !== 5) {
+            if (!cardExpiry || cardExpiry.length !== 7) {
                 resultDiv.textContent = 'Invalid expiry format';
                 resultDiv.style.color = '#dc3545';
                 return;
             }
 
-            const [mmStr, yyStr] = cardExpiry.split('/');
+            const [mmStr, yyyyStr] = cardExpiry.split('/');
             const mm = parseInt(mmStr, 10);
-            let yy = parseInt(yyStr, 10);
-            if (isNaN(mm) || isNaN(yy) || mm < 1 || mm > 12) {
+            let yyyy = parseInt(yyyyStr, 10);
+            if (isNaN(mm) || isNaN(yyyy) || mm < 1 || mm > 12) {
                 resultDiv.textContent = 'Invalid expiry date';
                 resultDiv.style.color = '#dc3545';
                 return;
             }
-            if (yy < 100) {
-                yy += 2000;
+            if (yyyy < 100) {
+                yyyy += 2000;
             }
             const today = new Date();
-            const expiryDate = new Date(yy, mm, 0);
+            const expiryDate = new Date(yyyy, mm, 0);
             if (expiryDate >= today) {
                 resultDiv.textContent = '✅ Card is valid';
                 resultDiv.style.color = '#198754';
