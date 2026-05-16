@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add Card{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1><i class="fas fa-plus-circle"></i> Add New Card</h1>
+        <form method="POST" class="p-4 rounded shadow">
+            <div class="mb-3">
+                <label for="holder"><i class="fas fa-user"></i> Cardholder Name</label>
+                <input type="text" class="form-control" id="holder" name="holder" placeholder="Full Name on Card" required autocomplete="cc-name">
+            </div>
+            <div class="mb-3">
+                <label for="number"><i class="fas fa-credit-card"></i> Card Number</label>
+                <input type="text" class="form-control" id="number" name="number" placeholder="0000 0000 0000 0000" required autocomplete="cc-number" maxlength="19" inputmode="numeric">
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="expiry"><i class="fas fa-calendar-alt"></i> Expiry (MM/YYYY)</label>
+                    <input type="text" class="form-control" id="expiry" name="expiry" placeholder="MM/YYYY" required autocomplete="cc-exp">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cvv"><i class="fas fa-lock"></i> CVV</label>
+                    <input type="password" class="form-control" id="cvv" name="cvv" placeholder="•••" maxlength="3" required autocomplete="cc-csc" inputmode="numeric">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-modern w-100"><i class="fas fa-save"></i> Save Card</button>
+        </form>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+</div>
+{% endblock %}

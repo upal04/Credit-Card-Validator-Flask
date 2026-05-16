@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}Credit Card Manager{% endblock %}
+{% block content %}
+<div style="text-align:center;margin-bottom:2rem;">
+    <div style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;">Secure · Encrypted · Always-On</div>
+    <h1 style="font-size:2.2rem;margin-bottom:0.5rem;background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Card Manager</h1>
+    <p style="color:var(--text-muted);font-size:0.85rem;font-family:'DM Mono',monospace;">Manage your cards with military-grade security</p>
+</div>
+
+<div class="tabs">
+  <div class="tab-button active" data-tab="login">Login</div>
+  <div class="tab-button"        data-tab="register">Register</div>
+  <div class="tab-button"        data-tab="developer">Dev</div>
+</div>
+
+<div class="tab-content">
+
+  <!-- ── LOGIN ── -->
+  <div id="login" class="tab-panel active">
+    <form method="POST" action="{{ url_for('login_route') }}">
+      <div class="mb-3">
+        <label for="username"><i class="fas fa-user"></i> Username</label>
+        <input type="text" name="username" id="username" required class="form-control"
+               placeholder="Enter username" autocomplete="username">
+      </div>
+      <div class="mb-3">
+        <label for="login_password"><i class="fas fa-lock"></i> Password</label>
+        <div class="pw-wrap">
+          <input type="password" name="password" id="login_password" required class="form-control"
+                 placeholder="Enter password" autocomplete="current-password">
+          <button type="button" class="pw-eye" data-target="login_password" title="Show / hide password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-modern w-100">
+        Login <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- ── REGISTER ── -->
+  <div id="register" class="tab-panel">
+    <form method="POST" action="{{ url_for('register_route') }}">
+      <div class="mb-3">
+        <label for="reg_username"><i class="fas fa-user"></i> Username</label>
+        <input type="text" name="username" id="reg_username" required class="form-control"
+               placeholder="Choose username" autocomplete="username">
+      </div>
+      <div class="mb-3">
+        <label for="reg_password"><i class="fas fa-lock"></i> Password</label>
+        <div class="pw-wrap">
+          <input type="password" name="password" id="reg_password" required class="form-control"
+                 placeholder="Min 8 chars, mixed case, symbol" autocomplete="new-password">
+          <button type="button" class="pw-eye" data-target="reg_password" title="Show / hide password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <!-- Strength bar -->
+        <div class="pw-strength-bar">
+          <div class="pw-strength-fill" id="pwStrengthFill"></div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-muted);margin-top:4px;">
+          8+ chars · Uppercase · Lowercase · Digit · Symbol
+        </div>
+      </div>
+      <button type="submit" class="btn btn-modern w-100">
+        Create Account <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- ── DEVELOPER ── -->
+  <div id="developer" class="tab-panel">
+    <form method="POST" action="{{ url_for('landing') }}">
+      <div class="mb-3">
+        <label for="dev_key"><i class="fas fa-terminal"></i> Developer Key</label>
+        <div class="pw-wrap">
+          <input type="password" name="dev_key" id="dev_key" required class="form-control"
+                 placeholder="Enter developer key">
+          <button type="button" class="pw-eye" data-target="dev_key" title="Show / hide key">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      {% if dev_error %}
+      <div class="alert alert-danger">{{ dev_error }}</div>
+      {% endif %}
+      <button type="submit" class="btn btn-modern w-100">
+        Access Dashboard <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
+      </button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

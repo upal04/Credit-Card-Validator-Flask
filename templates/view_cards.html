@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Your Cards{% endblock %}
+{% block content %}
+<h1><i class="fas fa-layer-group"></i> Your Cards</h1>
+
+{% if cards %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for card in cards %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <span>{{ card.holder }}</span>
+                <span style="color:var(--cyan);">{{ card.expiry }}</span>
+            </div>
+            <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+                <div style="font-family:var(--font-mono);font-size:1.05rem;letter-spacing:0.2em;color:var(--text);">{{ mask_number(card.number) }}</div>
+                <div class="mt-auto d-flex gap-2 flex-wrap">
+                    <a href="{{ url_for('card_details', card_id=card.id) }}" class="btn btn-outline-info btn-sm">
+                        <i class="fas fa-eye"></i> Details
+                    </a>
+                    <button class="btn btn-outline-success btn-sm check-validity-btn" data-expiry="{{ card.expiry }}">
+                        <i class="fas fa-check"></i> Validity
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm delete-card" data-card-id="{{ card.id }}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="validity-result"></div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align:center;padding:48px 24px;">
+    <div style="font-size:3rem;margin-bottom:16px;color:var(--text-muted);">
+        <i class="fas fa-credit-card"></i>
+    </div>
+    <p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem;margin-bottom:20px;">No cards saved yet.</p>
+    <a href="{{ url_for('add_card') }}" class="btn btn-modern" style="display:inline-flex;width:auto;">Add Your First Card</a>
+</div>
+{% endif %}
+
+<div class="d-flex gap-3 mt-4">
+    <a href="{{ url_for('add_card') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Card</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Dashboard</a>
+</div>
+{% endblock %}

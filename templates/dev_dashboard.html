@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Developer Dashboard{% endblock %}
+{% block content %}
+<h1><i class="fas fa-terminal"></i> Developer Dashboard</h1>
+<div style="margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">
+        Total accounts: <span style="color:var(--cyan);">{{ users_data|length }}</span>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Exit</a>
+</div>
+{% for username, data in users_data.items() %}
+<div class="card mb-3">
+    <div class="card-header" style="display:flex;justify-content:space-between;">
+        <span style="color:var(--cyan);">{{ username }}</span>
+        <span>{{ data.cards|length }} card{{ 's' if data.cards|length != 1 else '' }}</span>
+    </div>
+    <div class="card-body">
+        <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);word-break:break-all;margin-bottom:12px;"><strong>Hash:</strong> {{ data.password }}</p>
+        {% for card in data.cards %}
+        <div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px;font-family:var(--font-mono);font-size:0.78rem;">
+            <span style="color:var(--cyan);">{{ card.holder }}</span> &nbsp;|&nbsp;
+            {{ format_number(card.number) }} &nbsp;|&nbsp;
+            Exp: {{ card.expiry }} &nbsp;|&nbsp;
+            CVV: {{ card.cvv }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

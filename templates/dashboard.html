@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div style="margin-bottom:2rem;">
+    <div style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;">Logged in as</div>
+    <h1 style="font-size:1.8rem;margin:0;">{{ user }}</h1>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;">
+                <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;">Saved Cards</div>
+                <div style="font-size:2.8rem;font-weight:800;color:var(--cyan);line-height:1;">{{ card_count }}</div>
+                <p class="card-text" style="flex:1;">Your securely stored Cards</p>
+                <a href="{{ url_for('view_cards') }}" class="btn btn-primary w-100">View Cards</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;">
+                <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;">Add New Card</div>
+                <div style="font-size:2.8rem;font-weight:800;color:var(--violet);line-height:1;"><i class="fas fa-plus"></i></div>
+                <p class="card-text" style="flex:1;">Store a new card with Luhn validation</p>
+                <a href="{{ url_for('add_card') }}" class="btn btn-success w-100">Add Card</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;">
+                <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;">Account</div>
+                <div style="font-size:2.8rem;font-weight:800;color:var(--red);line-height:1;"><i class="fas fa-trash-alt"></i></div>
+                <p class="card-text" style="flex:1;">Permanently remove your account and all data</p>
+                <a href="{{ url_for('delete_account') }}" class="btn btn-danger w-100">Delete Account</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
