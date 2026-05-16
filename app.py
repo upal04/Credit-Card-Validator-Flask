@@ -392,6 +392,8 @@ def dev_dashboard():
 def static_files(filename):
     return app.send_static_file(filename)
 
+init_db()
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
